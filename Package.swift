@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version: 6.0
 import PackageDescription
 import class Foundation.FileManager
 import struct Foundation.URL
@@ -7,10 +7,10 @@ import struct Foundation.URL
 //
 // This value will be updated by the CI/CD pipeline and should not be
 // updated manually
-let latestVersion = "2.41.0"
+let latestVersion = "2.41.0-visionOS"
 
 // Hosting url where the release artifacts are hosted.
-let hostingUrl = "https://releases.amplify.aws/aws-sdk-ios/"
+let hostingUrl = "https://github.com/HaleXie/aws-sdk-ios-spm/releases/download/2.41.0-visionOS/"
 
 enum BuildMode {
     case remote
@@ -26,53 +26,53 @@ let buildMode = BuildMode.remote
 // The checksum value will be updated by the CI/CD pipeline and should
 // not be updated manually
 let frameworksToChecksum = [
-    "AWSAPIGateway": "0758bee99cc91299d667eb3efbf17dd6c5bc3d32dd460d44d7e8dbc30bc82f1c",
-    "AWSAppleSignIn": "07cba9e2138ec98d0b8d70f21c9ae812cfca65dabb72fea50c011bb21ac8fada",
-    "AWSAuthCore": "4a6cc38b908282dbadc534efa5e342babf0830a74f492486db66485e0d6a48eb",
-    "AWSAuthUI": "2af24e2fa30984b87b984d6d6bf77b2cc64d3f9b449436c073478c1342b6505f",
-    "AWSAutoScaling": "01a2b1290c0958b424022c0577d0c929a94d3547cdeb476b21bfd07aeb602bef",
-    "AWSChimeSDKIdentity": "b3fd2e6042f1ae2ac372cc669905c537e7b580ecb6919aab89f6158b198832dc",
-    "AWSChimeSDKMessaging": "29250e734fde1f13e0a9203da3cceea1fc5ce84d562028d601db5ca16fe93e01",
-    "AWSCloudWatch": "8eebeac0455941d32005f6833b19dcdcba6b8e8f602e75de5f279d9a5fe336d4",
-    "AWSCognitoAuth": "a920cae18da05be6aa4b62a9c184dfaf36285cd8262dca2bfa428482f688df5c",
-    "AWSCognitoIdentityProvider": "bedd65dca74dd4fdf649b9d29c31e74637f839c0f73e63999d30ca675973f792",
-    "AWSCognitoIdentityProviderASF": "1171b85fc49464118b8bca6c9cfb529805eb207f4efc63e1127370dba5d11a30",
-    "AWSComprehend": "969e7572d246ad2a87ba06211ac34c28b6fde837b6525bb47b1a6ac9ab87fe3e",
-    "AWSConnect": "4d56f833d37c31ea3fa653d5cc32b52c6bd16da2bf833880d20852558be15828",
-    "AWSConnectParticipant": "51287068e6faeda5240563354939001e302694556240e4a4b374667e5c4d8f88",
-    "AWSCore": "8a42c3da7efdc47b7b7e40a3cac0f1c29bc7bd0020d630fc1bd31e29caffdb3c",
-    "AWSDynamoDB": "e229c40dcd8f9e516f1da045a3ac23d001a53d217f9af6421bbce320a9b978cf",
-    "AWSEC2": "3b44e7af8950509ada99de3dc69659dab0d75a224f37c888810cade48bfed10e",
-    "AWSElasticLoadBalancing": "bbd3e570b07569a353a53171a6a684d44045259f13a4e46627bf342222a6c34d",
-    "AWSFacebookSignIn": "1c39bbf5f19db61f0e8d5ad4c69af968fb58b486a78b243d465cc3c60c3e1f2d",
-    "AWSGoogleSignIn": "7054b1dcbba18ab7cca253de0b64ba7cac9698c963b0ccbcf311280b9502b547",
-    "AWSIoT": "e563b9e9c1bdefad41bfecaddd4bd1002cb26d7d5fe9fcf8931234fbdd9a2255",
-    "AWSKMS": "4d8232c3634e18064472f9a19a92163a718bb1a6695bf19fc1bb008dbbf0c402",
-    "AWSKinesis": "1c24ba5ab0d323f06c41f0eb8929e080a9d72c4c8ca71208c2ec2d8a3a36c902",
-    "AWSKinesisVideo": "a909c4e29d65b3c7188975ecfd8b1de3727c927f9278c7d8a9bd19585fe1e516",
-    "AWSKinesisVideoArchivedMedia": "476c0f55b35cf6ec86f23a73a81aae2acba648085ef825e14de3ebce7799fbc7",
-    "AWSKinesisVideoSignaling": "dd4f4b80e9cfa08c47f744df4bf5d69256eb63bf0db1e4aedd9d4ffaa53234bd",
-    "AWSKinesisVideoWebRTCStorage": "006eaa2bd14f5c154f75b00632fd0b7e9d414df653b3c64eaaba6da7329ac579",
-    "AWSLambda": "789ce5058ebfa67dcd124d32ef3a371f370a450339b48cf4e71274e8a244a328",
-    "AWSLex": "49b7c01c8844f35f6bd0f863a18e3ae783f47d6b4f88273c9e7e4847f8b1b456",
-    "AWSLocationXCF": "4faf40a5e01edcbaf5ae055ee7e39c6cc412ec9cbda7e8f79f68d768919d6732",
-    "AWSLogs": "7c1d9386a69dbc6219eab60ba5ac0f55d09148fe76d3a9a6198cc0a30b774581",
-    "AWSMachineLearning": "967988a338dda0364bffd0283f6410bb1fa3719981ea0aa7413f0b16733331b1",
-    "AWSMobileClientXCF": "f7c99e4d1047782648a1d84e43675b4452055a86cc19b3aa30dbcb0b61d64383",
-    "AWSPinpoint": "3e2822d923f3e441e657c682a20a9ad3ebaa629676d2a172dbbc75f5396a6fab",
-    "AWSPolly": "d885974c33d44236e385a399c55925d194dd105b9295c206502fe887952b5c9a",
-    "AWSRekognition": "65894cf42538a9e6a7ce557f5993ca0c19b2e29f2cf864c4d5a5ff05d25a5aff",
-    "AWSS3": "bb017dd3726ef20443c4bdfd171f852c35215939e751a0f8cf53c0c891df74f9",
-    "AWSSES": "2cc3aaebea456ab3ae05825d03bc0090d71aa96eb8ccf131c4ba7b89e01b5098",
-    "AWSSNS": "2fd65f7749498a8da2ca04d199af82022cc68e152231aa111727217a2d6e8e87",
-    "AWSSQS": "6141c8ca77bbeffab283c120694f28647b68743216c0725a90cbe90fda144b7f",
-    "AWSSageMakerRuntime": "1d71f5b08a5c3a50f01b76e639e3e2102de3ec5f36b1434f6266b3f022329338",
-    "AWSSimpleDB": "36a8012646bf3442d0b70d2fadbeac81623a501215eb10bf5f06359ec6305407",
-    "AWSTextract": "835d4e9ca194c3e1e9aad6ddc72b3a33b3c2e32904f97cd47bf6f17285ea1a14",
-    "AWSTranscribe": "bb8d63289a66430cda69b84cf51a472b55db3544ea99aad1d0027fb4bc51cbcd",
-    "AWSTranscribeStreaming": "69706894ace1e2586bb09fe3eba4b4d216c325c4d4bc1a3e24662f71263c20c1",
-    "AWSTranslate": "2b9455a2c750fbb651294967908c9fc22dd4036e30e8dcc601cd25736e4248e3",
-    "AWSUserPoolsSignIn": "fcb227126239c3142a57571659d715cabe9cb4c57919cbf89c90447b575e82c9"
+    "AWSAPIGateway": "84bf483708694b7c2b44881c65d4ff400c240298db141a749c06974c93b4a26a",
+    "AWSAppleSignIn": "db6b03e0811d84c4797eb16d722e09c21f301da44746a670b8cb2a65eaf56770",
+    "AWSAuthCore": "ad3e36b2209c5a8a198d5b5288bdde3283e8e7895ab6cdf176c38310824120e4",
+    "AWSAuthUI": "73c64172ef113da4b6f1e94f11ccdf2713b2621de4e8d3314c6ea1408fa45725",
+    "AWSAutoScaling": "dbc14a8494616ae69a634d2797b46293a51212b249d0bb025e452e0b5748affb",
+    "AWSChimeSDKIdentity": "9ce558657340aeb34e5e206aab1b5700a28304733ebc77a828d86cae773f311e",
+    "AWSChimeSDKMessaging": "f9dcdcf3e8855fc6fe2ead887cb2a160f567fc3960cbcfee3228bcfac64d5afe",
+    "AWSCloudWatch": "aa901bf2e34e15f8e370faf312becb3cce8491a0d5fd3d195f106676a0336b8b",
+    "AWSCognitoAuth": "1494c07cda115aa1db2d17b3c63f7837e3d9a64e251cb0c86c4682251afe1417",
+    "AWSCognitoIdentityProvider": "74c7a2f03e40e587cbefd5dc26635d450cbb70dc6130cb1561557a8e47bf8a82",
+    "AWSCognitoIdentityProviderASF": "e8d0d431d02424baf378f96cd85117fbabb384e3a2fa53a75225e802d03b1edf",
+    "AWSComprehend": "d11de3ffdcf7b421bb5d9cf8d35325e50e1dbf4c1548cb29f1684c95ccb501f6",
+    "AWSConnect": "c82983da2aa24f5148006dcb182d56707d3dc06f9aec656cb3814fe969d8aacd",
+    "AWSConnectParticipant": "d60186ae90ff55880d4a0e549e0623dea9ab90425b8653e9309e0382056ea78d",
+    "AWSCore": "4149d7d5c33cfae2ff3df370fd6cf5c862ec8cacc11dc17a9059bc5cfb56473e",
+    "AWSDynamoDB": "0d52dd7fcc8bc6787f47fc1cd083f87a07207e9c2e8023ba47b26b16fd55a843",
+    "AWSEC2": "f0e9aa4d54a60e111555c65ebd830f070f9dc1db5631b8521356b5ca2c453a59",
+    "AWSElasticLoadBalancing": "7490398fd4546d08847515afff92b65821a732f11da653df554dd4aa757a12ad",
+    "AWSFacebookSignIn": "fae8dcd9bf85c20a882978b676446b5f5057e25c8c05e9e300706fe02c46aa64",
+    "AWSGoogleSignIn": "53c117441ed17d133bbd207082ea561ffcb683e1735a0daa31696fb1ec135d49",
+    "AWSIoT": "e8d01c87518379b317faa08388190741fcdf00b6cff17b2f997d26b8c23e7cd5",
+    "AWSKMS": "8011ee85faf5450a7cdbb91b4b0d8d73e792c6aa189e84e44bb3b1b5ec766395",
+    "AWSKinesis": "add47600914ce0a9a5a5d12be201506e248bd404eb32542f2a372696a142736c",
+    "AWSKinesisVideo": "9f993ae1dd90f20148682fb478c68c495db5705536134bb0da4af89de449bd8a",
+    "AWSKinesisVideoArchivedMedia": "ae63dec2a2e5ec400c9711cb1f7aa9c1550c5a7dafd56472245167faa4e7aa81",
+    "AWSKinesisVideoSignaling": "4c2224c22a9b15346e74de244442ad75b8b3e28ab58b299cedf74afa49e89cda",
+    "AWSKinesisVideoWebRTCStorage": "c8aea44c90568a67b5fffe9a5ddc1bddd353c349bdb2618397f4881de004e76f",
+    "AWSLambda": "bca353cc7247aa3df57337bc7b74887826dae1fa4be7e78830fb418116e37445",
+    "AWSLex": "5893dd2408e923f4e907b32747e038cf5a812bdb75131571595a1b3d90a5e5c5",
+    "AWSLocationXCF": "baecee6b4d457d17ebfe2fd7cf63f29e38bc205c4bc15e051b3b13689fe8a44b",
+    "AWSLogs": "dbdee024db6a3fa42b3b4742ec715f59e47bd8b50dcc564eede123d8fe9df7e1",
+    "AWSMachineLearning": "f2abf416244449eca7aff4badaf389895c0b0be54d77d2d6516827ef734c31b7",
+    "AWSMobileClientXCF": "8407c1748dc9ee3600dd7691acc52114540029045506878afe66503acfc6c24a",
+    "AWSPinpoint": "d3ce93a952dc8b44fef35e58892326f23e5acd209b3d0e3ff4cf69ddfb52a4f1",
+    "AWSPolly": "02ad0e4cfca6530c8368a60a9dfb45ad63499b500009e1c28d8b5ba93a3b5aa1",
+    "AWSRekognition": "d3f9fc1165ed0dc84c69dbf4f23c47fc50a901ff4aaa672ee4f9e08d1941f42e",
+    "AWSS3": "0aafb9e5f6e92b925a370c34656dfe613e36de9146c0c07281ecb97a9e711c05",
+    "AWSSES": "0badc138e3d930ac1aad35724fcb10da505f3866aff7dfd959a74fd848e84374",
+    "AWSSNS": "5fcecf4161d7bc762651b5db93c22d6ac78b406ec8166f4ed2a5f087045f669e",
+    "AWSSQS": "2f7429a7db5a53860a55f2c2bd4c426764dceb007681e5835bd3c3e96e4dd1d3",
+    "AWSSageMakerRuntime": "a4ab069309aed60facb9aff1cdb08a427faf6a0a89857fd2eea74ac6ff6dfce9",
+    "AWSSimpleDB": "714f8048c42b8977d47a951160939db91ad473a7c8c84a6f91209bc62a03ea9d",
+    "AWSTextract": "69fdd87ae9a738e75f77dcf392d8824d2f21089331482376fe390c0c1327f663",
+    "AWSTranscribe": "e27d0d99de531b059308109647cd35b4b23b2b926eefb3773aea5f0e17fac7ee",
+    "AWSTranscribeStreaming": "4c50d06b14a450caf81267030999c180fbd960a7e5a3203fe1bc30c558e1badd",
+    "AWSTranslate": "3eb19bea8b07c7ac111a1888db2e9f702150f211c57577462b8e4e1953e5d7fe",
+    "AWSUserPoolsSignIn": "15cb977a9e5b1f2f58a0e0f56a313c8c7cb54f439959843f531719aae0d36041",
 ]
 
 
@@ -214,7 +214,8 @@ let targets = createTargets()
 let package = Package(
     name: "AWSiOSSDKV2",
     platforms: [
-        .iOS(.v9)
+        .iOS(.v12),
+        .visionOS(.v2)
     ],
     products: products,
     targets: targets
