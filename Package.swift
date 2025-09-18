@@ -198,7 +198,8 @@ func createTargets() -> [Target] {
                     .target(
                         name: "\(framework)-Target",
                         dependencies: dependencies,
-                        path: "DependantTargets/\(framework)-Target"
+                        path: "DependantTargets/\(framework)-Target",
+                        publicHeadersPath: nil
                     )
                 )
             }
